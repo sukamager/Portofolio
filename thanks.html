@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Import file CSS custom untuk styling tambahan -->
+    <link rel="stylesheet" href="css/style.css">
+<title>Pesan Terkirim</title>
+
+<style>
+    body {
+        width: 100%;
+        min-height: 100vh;
+        background-image: url("./img/background.jpg");
+        background-size: cover;
+        overflow-x: hidden;
+        position: relative;
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* WRAPPER YANG MEN-CENTER */
+    .center-wrapper {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-40px); /* angkat ke atas */
+    }
+
+    .thanks-container {
+        text-align: center;
+        background: rgba(49, 47, 47, 0.85);
+        padding: 40px;
+        width: 90%;
+        max-width: 450px;
+        border-radius: 15px;
+    }
+    .thanks-container:hover {
+        transform: scale(1.03);
+        box-shadow: 0 0 20px rgb(50, 132, 255);
+    }
+
+    h1 {
+        color: #4a90e2;
+        margin-bottom: 10px;
+        font-size: 28px;
+    }
+
+    p {
+        color: #555;
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+
+    a {
+        display: inline-block;
+        padding: 12px 20px;
+        background: #4a90e2;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: 0.3s;
+        font-weight: 600;
+    }
+
+    a:hover {
+        background: #357ab8;
+    }
+</style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <!-- 
+            Logo dengan animasi zoom-in
+            data-aos-duration: 1500ms untuk animasi yang smooth 
+            -->
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                Suka <span>Mager</span>
+            </div>
+        </div>
+    </nav>
+    <div class="center-wrapper">
+        <div class="thanks-container">
+            <h1>Terima Kasih!</h1>
+            <p>Pesan kamu sudah berhasil dikirim. Kami akan membalas secepatnya.</p>
+            <a href="index.html">Kembali ke Beranda</a>
+        </div>
+    </div>
+</body>
+</html>
