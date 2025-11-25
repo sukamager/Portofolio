@@ -203,6 +203,11 @@ nav {
         .gallery-wrap {
             margin: 0 auto 10px auto;
             padding: 0;
+        }
+
+        .swiper {
+            height: auto;
+        }
     /* Buat slide berbentuk portrait */
     .swiper-slide{
       width:200px; /* lebar tiap kartu portrait */
@@ -221,8 +226,9 @@ nav {
     .swiper-slide img{
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:contain;
       display:block;
+        border-radius: 20px;
     }
 
     /* Highlight slide tengah (opsional additional styling) */
