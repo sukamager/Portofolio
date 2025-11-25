@@ -25,6 +25,8 @@ body {
     background-size: cover;
     overflow-x: hidden;
     position: relative;
+    padding: 0;
+    margin: 0;
 }
 
 nav {
@@ -201,10 +203,23 @@ nav {
     animation-delay: 0.6s;   /* boleh diubah */
 }
 
+        .swiper {
+            width: 100%;
+            margin-left: 0;
+            pedding-left: 0;
+        }
+        .gallery-container,
+        .container,
+        .wrapper {
+            padding-left: 0;
+            margin-left: 0;
+        }
+
     /* Buat slide berbentuk portrait */
     .swiper-slide{
       width:200px; /* lebar tiap kartu portrait */
       height:260px; /* tinggi portrait */
+        transform:none;
       display:flex;
       align-items:center;
       justify-content:center;
