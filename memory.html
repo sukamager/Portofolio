@@ -1,4 +1,3 @@
-<!-- Versi baru halaman Skill yang diubah menjadi My Day dan Hobi -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
 
@@ -151,19 +152,6 @@ nav {
     margin-top: 60px;
     margin-bottom: 20px;
 }
-
-/* Judul section */
-.section-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 1s ease-out forwards;
-    animation-delay: 0.6s;   /* boleh diubah */
-}
-
 /* Animasi */
 @keyframes fadeIn {
     0% {
@@ -199,36 +187,62 @@ nav {
     }
 }
 
- /* Activity Slider */
- .activity-slider { 
-        overflow: visible;
-        white-space: nowrap;
-      width: 100%;
-      margin-top: 40px;
-    }
 
-    .slider-track {
-      display: inline-block;
-      white-space: nowrap;
-      animation: scroll-left 25s linear infinite;
-      flex-wrap: nowrap;
-    }
+/* Judul section */
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.6s;   /* boleh diubah */
+}
 
-    .slider-track img {
-      width: 200px;
-      height: 300px;
-      object-fit: cover;
-      margin: 0 15px;
-      border-radius: 15px;
+    /* Buat slide berbentuk portrait */
+    .swiper-slide{
+      width:200px; /* lebar tiap kartu portrait */
+      height:260px; /* tinggi portrait */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:18px;
+      overflow:hidden;
+      background:rgba(255,255,255,0.04);
       box-shadow: 0 0 20px rgb(50, 132, 255);
-      transition: transform 0.3s;
+      transition:transform .25s ease, box-shadow .25s ease;
     }
 
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    /* Gambar menutupi slide, tetap potrait */
+    .swiper-slide img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
+    /* Highlight slide tengah (opsional additional styling) */
+    .swiper-slide-thumb-active,
+    .swiper-slide-active{
+      transform:scale(1.03);
+      box-shadow:0 20px 50px rgba(12,18,40,0.6);
+    }
+
+    /* Kontrol navigasi custom kecil */
+    .swiper-button-next, .swiper-button-prev{
+      color:#fff;
+    }
+
+    .swiper-pagination-bullets{
+      bottom:8px !important;
+    }
+
+    /* Responsive: sesuaikan ukuran portrait di layar kecil */
+    @media (max-width:700px){
+      .gallery-wrap{height:560px}
+      .swiper-slide{width:200px;height:320px;border-radius:14px}
+    }
     </style>
     <title>My Day & Hobi</title>
 </head>
@@ -264,50 +278,69 @@ nav {
                         My <span>Hobi</span>
                     </div>
             </div>
-        <div class="activity-slider">
-            <div class="slider-track">
-                <img src="img/day.jpeg" alt="Activity 1">
-                <img src="img/day2.jpeg" alt="Activity 2">
-                <img src="img/day3.jpeg" alt="Activity 3">
-                <img src="img/day4.jpeg" alt="Activity 4">
-                <img src="img/day5.jpeg" alt="Activity 5">
-                <img src="img/day6.jpeg" alt="Activity 2">
-                <!--Duplikate-->
-                <img src="img/day.jpeg" alt="Activity 1">
-                <img src="img/day2.jpeg" alt="Activity 2">
-                <img src="img/day3.jpeg" alt="Activity 3">
-                <img src="img/day4.jpeg" alt="Activity 4">
-                <img src="img/day5.jpeg" alt="Activity 5">
-                <img src="img/day6.jpeg" alt="Activity 2">
-            </div>
-        </div>
+            <div class="gallery-wrap">
+                <!-- Slider utama -->
+                <div class="swiper mySwiper">
+                  <div class="swiper-wrapper">
+                    <!-- 6 Foto potrait (gunakan gambar sendiri atau ganti URL) -->
+                    <div class="swiper-slide"><img src="img/day.jpeg" alt="girl.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/day2.jpeg" alt="girl2.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/day3.jpeg" alt="girl3.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/day4.jpeg" alt="girl4.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/day5.jpeg" alt="girl5.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/day6.jpeg" alt="girl6.jpeg"></div>
+                      <!-- duplikat) -->
+                      <div class="swiper-slide"><img src="img/day.jpeg" alt="girl.jpeg"></div>
+                      <div class="swiper-slide"><img src="img/day2.jpeg" alt="girl2.jpeg"></div>
+                      <div class="swiper-slide"><img src="img/day3.jpeg" alt="girl3.jpeg"></div>
+                      <div class="swiper-slide"><img src="img/day4.jpeg" alt="girl4.jpeg"></div>
+                      <div class="swiper-slide"><img src="img/day5.jpeg" alt="girl5.jpeg"></div>
+                      <div class="swiper-slide"><img src="img/day6.jpeg" alt="girl6.jpeg"></div>
+                  </div>
+                  <!-- Pagination / Controls -->
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+</div>
             <div class="section-title">
-                 <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
                         My <span>Girl</span>
                     </div>
             </div>
-            <div class="activity-slider">
-                <div class="slider-track">
-                <img src="img/girl.jpeg" alt="Activity 1">
-                <img src="img/girl2.jpeg" alt="Activity 2">
-                <img src="img/girl3.jpeg" alt="Activity 3">
-                <img src="img/girl4.jpeg" alt="Activity 4">
-                <img src="img/girl5.jpeg" alt="Activity 5">
-                <img src="img/girl6.jpeg"alt="Activity 6">
-                <!--Duplikate-->
-                <img src="img/girl.jpeg" alt="Activity 1">
-                <img src="img/girl2.jpeg" alt="Activity 2">
-                <img src="img/girl3.jpeg" alt="Activity 3">
-                <img src="img/girl4.jpeg" alt="Activity 4">
-                <img src="img/girl5.jpeg" alt="Activity 5">
-                <img src="img/girl6.jpeg"alt="Activity 6">
-        </div>
-    </div>
+            <div class="gallery-wrap">
+                <!-- Slider utama -->
+                <div class="swiper mySwiper">
+                  <div class="swiper-wrapper">
+                    <!-- 6 Foto potrait (gunakan gambar sendiri atau ganti URL) -->
+                    <div class="swiper-slide"><img src="img/girl.jpeg" alt="girl.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/girl2.jpeg" alt="girl2.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/girl3.jpeg" alt="girl3.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/girl4.jpeg" alt="girl4.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/girl5.jpeg" alt="girl5.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/girl6.jpeg" alt="girl6.jpeg"></div>
+                    <!-- duplikat) -->
+                    <div class="swiper-slide"><img src="img/girl.jpeg" alt="girl.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/girl2.jpeg" alt="girl2.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/girl3.jpeg" alt="girl3.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/girl4.jpeg" alt="girl4.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/girl5.jpeg" alt="girl5.jpeg"></div>
+                    <div class="swiper-slide"><img src="img/girl6.jpeg" alt="girl6.jpeg"></div>
+                  </div>
+                  <!-- Pagination / Controls -->
+                  <div class="swiper-pagination"></div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
 </div>
 </div>
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         AOS.init({offset: 0});
         
@@ -320,6 +353,35 @@ nav {
             const navbar = document.querySelector(".dropdown")
             navbar.style.transform = "translateY(-500px)"
         }
+
+        const swiper = new Swiper('.mySwiper', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      loop: true,
+      slidesPerView: 'auto',
+      spaceBetween: 30,
+      coverflowEffect: {
+        rotate: 40,
+        stretch: 0,
+        depth: 180,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      // Optional: autoplay
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      }
+    });
     </script>
 </body>
 </html>
