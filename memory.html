@@ -1,3 +1,4 @@
+<!-- Versi baru halaman Skill yang diubah menjadi My Day dan Hobi -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -149,8 +150,8 @@ nav {
     font-weight: 700;
     color: white;
     margin-left: 40px;  /* supaya agak masuk tapi tetap rata kiri */
-    margin-top: 20px;
-    margin-bottom: 5px;
+    margin-top: 60px;
+    margin-bottom: 20px;
 }
 /* Animasi */
 @keyframes fadeIn {
@@ -176,13 +177,13 @@ nav {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 5px;
+    padding: 20px;
     text-align: center;
 }
 /* HP */
 @media (max-width: 480px) {
     .gallery-container {
-        padding: 5px;           /* kecilkan padding */
+        padding: 10px;           /* kecilkan padding */
         max-width: 100%;         /* jangan terlalu lebar */
     }
 }
@@ -200,14 +201,6 @@ nav {
     animation-delay: 0.6s;   /* boleh diubah */
 }
 
-        .gallery-wrap {
-            margin: 0 auto 10px auto;
-            padding: 0;
-        }
-
-        .swiper {
-            height: auto;
-        }
     /* Buat slide berbentuk portrait */
     .swiper-slide{
       width:200px; /* lebar tiap kartu portrait */
@@ -226,9 +219,8 @@ nav {
     .swiper-slide img{
       width:100%;
       height:100%;
-      object-fit:contain;
+      object-fit:cover;
       display:block;
-        border-radius: 20px;
     }
 
     /* Highlight slide tengah (opsional additional styling) */
@@ -280,7 +272,6 @@ nav {
         </div>
     </nav>
 
-  <!--      <div class="gallery-container">-->
             <div class="section-title">
                 <div class="nav-container">
                     <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
@@ -312,7 +303,6 @@ nav {
                   <div class="swiper-button-prev"></div>
                 </div>
               </div>
-<!--</div>-->
             <div class="section-title">
                 <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
                         My <span>Girl</span>
