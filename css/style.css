@@ -154,17 +154,22 @@ section {
 }
 
 .main-container .image {
-  width: clamp(180px, 40vw, 260px);   /* FIX */
-  height: clamp(180px, 40vw, 260px);  /* FIX */
+  width: clamp(160px, 45vw, 240px);   /* lebih kecil biar tdk ketarik */
+  aspect-ratio: 1/1;                  /* pastikan tetap bulet, tdk lonjong */
+  height: auto;                        /* FIX: tidak pakai height fix */
   border-radius: 50%;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0 0 40px rgb(50, 132, 255);
 }
 
 .main-container .image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;                   /* jaga agar tidak lonjong */
+  object-position: center;
 }
 
 /* MOBILE FIX */
@@ -198,9 +203,15 @@ section {
 
 @media (max-width: 440px) {
   .main-container .image {
-    width: 60%;
-    aspect-ratio: 1/1;                /* FIX dari height 30% */
+    width: 65%;
+    aspect-ratio: 1/1;                 /* tetap bulet di semua HP */
+    height: auto;
   }
+
+  .content button {
+    width: 90%;
+  }
+}
 
   .content button {
     width: 90%;
