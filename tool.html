@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Web Tools - Password / QR / Subnet / Ping / Text</title>
+  <style>
+    /* --- NAV ANIMATION (Suka Mager Glow + AOS-like effect) --- */
+    .logo{
+      opacity:0;
+      transform:translateY(-20px);
+      animation: logoFade 0.8s ease-out forwards;
+    }
+    @keyframes logoFade{
+      0%{opacity:0; transform:translateY(-20px);} 
+      100%{opacity:1; transform:translateY(0);} 
+    }
+
+    .links .link{
+      opacity:0;
+      transform:translateY(-15px);
+      animation: linkFade 0.8s ease-out forwards;
+    }
+    .links .link:nth-child(1){animation-delay:0.15s}
+    .links .link:nth-child(2){animation-delay:0.25s}
+    .links .link:nth-child(3){animation-delay:0.35s}
+    .links .link:nth-child(4){animation-delay:0.45s}
+
+    @keyframes linkFade{
+      0%{opacity:0; transform:translateY(-15px);} 
+      100%{opacity:1; transform:translateY(0);} 
+    }
+
+    .hamburg{
+      opacity:0;
+      animation: hamFade 0.8s ease-out forwards;
+      animation-delay:0.4s;
+    }
+    @keyframes hamFade{
+      0%{opacity:0; transform:translateX(10px);} 
+      100%{opacity:1; transform:translateX(0);} 
+    }
+
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#94a3b8;--accent:#60a5fa}
+    *{box-sizing:border-box}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;smooth-font:antialiased;background:linear-gradient(180deg,#071025 0%,#07162a 100%);color:#e6eef8;margin:0;padding:24px}
+    h1{font-size:20px;margin:0 0 12px}
+    .wrap{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:18px}
+    .card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(2,6,23,.6);border:1px solid rgba(255,255,255,.02)}
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input[type=text],input[type=number],select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,.03);background:transparent;color:inherit}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+    button{background:var(--accent);border:0;color:#022;padding:8px 12px;border-radius:8px;cursor:pointer}
+    small{color:var(--muted)}
+    .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+    pre{background:#071728;padding:10px;border-radius:8px;overflow:auto;color:#a8e1ff}
+    .out{font-family:monospace;background:#061422;padding:8px;border-radius:6px;color:#bfe6ff}
+    .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .chip{background:rgba(255,255,255,.03);padding:6px 8px;border-radius:999px;font-size:13px;color:var(--muted)}
+    footer{text-align:center;color:var(--muted);margin-top:18px;font-size:13px}
+  </style>
+  <!-- NAV & THEME CSS FROM USER FILE -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    nav{width:100%;height:10vh;z-index:1000;position:relative}
+    .nav-container{width:100%;height:100%;display:flex;justify-content:space-around;align-items:center}
+    .logo{color:white;font-size:2rem;font-weight:bold}
+    .logo span{color:rgb(50,132,255);text-shadow:0 0 10px rgb(50,132,255)}
+    .hamburg,.cancel{cursor:pointer;position:absolute;right:15px;top:10px;color:white;display:none;font-size:2rem}
+    .nav-container .links{display:flex}
+    .nav-container .links a{font-size:1.2rem;color:white;margin:0 20px;text-decoration:none;font-weight:550;transition:.3s}
+    .nav-container .links a:hover{color:rgb(50,132,255);border-bottom:2px solid rgb(50,132,255)}
+    .dropdown{z-index:1000;position:fixed;top:0;left:0;right:0;transform:translateY(-500px);width:100%;backdrop-filter:blur(4px) brightness(40%);transition:.2s}
+    .dropdown .links a{display:flex;color:white;text-decoration:none;padding:15px 0;justify-content:center;transition:.2s}
+    .dropdown .links a:hover{background-color:rgb(50,132,255)}
+    @media(max-width:884px){.nav-container .links{display:none}.hamburg,.cancel{display:block}.logo{font-size:1.5rem;position:absolute;left:15px;top:16px}}
+  </style>
+  <style>
+    /* --- MOBILE OPTIMIZATION (OPSI 1: Full Width Bersih) --- */
+    @media(max-width:600px){
+      body{padding:12px !important;}
+      .wrap{padding:0 !important; margin:0 !important;}
+      h1{font-size:18px !important; text-align:center;}
+      .tools-grid{grid-template-columns:1fr !important; gap:14px !important;}
+      .card{padding:14px !important; border-radius:12px !important;}
+      input, textarea{font-size:14px !important; padding:10px !important;}
+      button{width:100% !important; padding:10px !important; font-size:14px !important;}
+      .actions{flex-direction:column !important; gap:6px !important;}
+      #qr-img{width:100% !important; height:auto !important;}
+      pre{font-size:13px !important; padding:10px !important; white-space:pre-wrap !important;}
+    }
+  </style>
+</head>
+<body style="background-image:url('./img/background.jpg');background-size:cover;background-position:center;">
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                Suka <span>Mager</span>
+            </div>
+            <div class="links">
+                <div class="link"><a href="index.html">Utama</a></div>
+                <div class="link"><a href="about.html">Tentang</a></div>
+                <div class="link"><a href="memory.html">Hobi & Girl</a></div>
+                <div class="link"><a href="contact.html">Kontak</a></div>
+                <div class="link"><a href="tool.html">Alat Bantu</a></div>
+            </div>
+        </div>
+        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        <div class="dropdown">
+            <div class="links">
+                <a href="index.html">Utama</a>
+                <a href="about.html">Tentang</a>
+                <a href="memory.html">Hobi & Girl</a>
+                <a href="contact.html">Kontak</a>
+                <a href="tool.html">Alat Bantu</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wrap">
+    <header>
+      <h1>Alat Bantu Buat Kita Yang Suka Mager</h1>
+      <small>Semoga membantu meringankan ke Mageran kita semua</small>
+    </header>
+
+    <div class="tools-grid">
+      <!-- Password Generator -->
+      <section class="card" id="password-card">
+        <h2>Password Generator</h2>
+        <label>Length</label>
+        <input id="pw-length" type="number" value="16" min="4" max="128" />
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <label class="chip"><input id="pw-upper" type="checkbox" checked/> Upper</label>
+          <label class="chip"><input id="pw-lower" type="checkbox" checked/> Lower</label>
+          <label class="chip"><input id="pw-numbers" type="checkbox" checked/> Numbers</label>
+          <label class="chip"><input id="pw-symbols" type="checkbox" checked/> Symbols</label>
+        </div>
+        <div class="actions">
+          <button id="gen-pw">Generate</button>
+          <button id="copy-pw">Copy</button>
+        </div>
+        <div style="margin-top:12px" class="out" id="pw-out">—</div>
+      </section>
+
+      <!-- QR Code Generator -->
+      <section class="card" id="qr-card">
+        <h2>QR Code Generator</h2>
+        <label>Text / URL</label>
+        <input id="qr-text" type="text" placeholder="https://" />
+        <label>Size (px)</label>
+        <input id="qr-size" type="number" value="200" min="80" max="1000" />
+        <div class="actions">
+          <button id="gen-qr">Generate QR</button>
+          <button id="download-qr">Download PNG</button>
+        </div>
+        <div style="margin-top:12px">
+          <img id="qr-img" alt="QR preview" style="background:#fff;padding:6px;border-radius:6px;display:block;" />
+        </div>
+        <small>NOTE: QR di-generate menggunakan Google Chart API (offline alternative bisa ditambahkan).</small>
+      </section>
+
+      <!-- Subnet Calculator -->
+      <section class="card" id="subnet-card">
+        <h2>Subnet Calculator</h2>
+        <label>IPv4 Address (with CIDR) — contoh: 192.168.1.10/24</label>
+        <input id="subnet-input" type="text" placeholder="192.168.0.10/24" />
+        <div class="actions">
+          <button id="calc-subnet">Calculate</button>
+          <button id="copy-subnet">Copy Result</button>
+        </div>
+        <pre id="subnet-out">—</pre>
+      </section>
+
+      <!-- Ping Simulator -->
+      <section class="card" id="ping-card">
+        <h2>Ping Test (Simulator)</h2>
+        <label>Host / Domain</label>
+        <input id="ping-host" type="text" placeholder="google.com" value="google.com" />
+        <label>Packets</label>
+        <input id="ping-count" type="number" value="4" min="1" max="20" />
+        <div class="actions">
+          <button id="run-ping">Run Ping</button>
+          <button id="stop-ping">Stop</button>
+        </div>
+        <pre id="ping-out">—</pre>
+      </section>
+
+      <!-- Text Tools -->
+      <section class="card" id="text-card">
+        <h2>Text Tools</h2>
+        <label>Input Text</label>
+        <textarea id="text-input" rows="6" placeholder="Masukkan teks di sini..."></textarea>
+        <div class="actions">
+          <button data-action="upper">UPPER</button>
+          <button data-action="lower">lower</button>
+          <button data-action="trim">Trim</button>
+          <button data-action="rm-spaces">Remove Double Spaces</button>
+          <button data-action="reverse">Reverse</button>
+          <button data-action="copy">Copy</button>
+        </div>
+        <pre id="text-out">—</pre>
+      </section>
+
+    </div>
+
+    <footer class="card">
+      <small>Created by Sukamager. Copyright by Sukamager</small>
+  </div>
+
+  <script>
+    // ---------- Password Generator ----------
+    function genPassword(len, opts){
+      const upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const lower = 'abcdefghijklmnopqrstuvwxyz';
+      const nums = '0123456789';
+      const syms = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+      let pool = '';
+      if(opts.upper) pool += upper;
+      if(opts.lower) pool += lower;
+      if(opts.nums) pool += nums;
+      if(opts.syms) pool += syms;
+      if(!pool) return '';
+      let out = '';
+      const cryptoObj = window.crypto || window.msCrypto;
+      // use secure random if available
+      if(cryptoObj && cryptoObj.getRandomValues){
+        const uint = new Uint32Array(len);
+        cryptoObj.getRandomValues(uint);
+        for(let i=0;i<len;i++) out += pool[uint[i] % pool.length];
+      } else {
+        for(let i=0;i<len;i++) out += pool[Math.floor(Math.random()*pool.length)];
+      }
+      return out;
+    }
+    document.getElementById('gen-pw').addEventListener('click',()=>{
+      const len = parseInt(document.getElementById('pw-length').value)||16;
+      const opts = {upper:document.getElementById('pw-upper').checked,lower:document.getElementById('pw-lower').checked,nums:document.getElementById('pw-numbers').checked,syms:document.getElementById('pw-symbols').checked};
+      const pw = genPassword(len,opts);
+      document.getElementById('pw-out').textContent = pw || 'Pilih minimal 1 jenis karakter';
+    });
+    document.getElementById('copy-pw').addEventListener('click',async()=>{
+      const txt = document.getElementById('pw-out').textContent;
+      if(!txt) return;
+      await navigator.clipboard.writeText(txt);
+      alert('Password copied');
+    });
+
+    // ---------- QR Generator (using Google Chart API for simplicity) ----------
+    function updateQR(){
+      const text = encodeURIComponent(document.getElementById('qr-text').value||'');
+      const size = parseInt(document.getElementById('qr-size').value)||200;
+      if(!text){ document.getElementById('qr-img').src=''; return; }
+      const url = `https://chart.googleapis.com/chart?cht=qr&chl=${text}&chs=${size}x${size}&chld=L|1`;
+      document.getElementById('qr-img').src = url;
+    }
+    document.getElementById('gen-qr').addEventListener('click',updateQR);
+    document.getElementById('download-qr').addEventListener('click',()=>{
+      const img = document.getElementById('qr-img');
+      if(!img.src) return alert('Generate QR dulu');
+      const a = document.createElement('a');
+      a.href = img.src;
+      a.download = 'qr.png';
+      a.click();
+    });
+
+    // ---------- Subnet Calculator ----------
+    function ipToInt(ip){
+      return ip.split('.').reduce((acc,oct)=> (acc<<8) + parseInt(oct,10),0) >>> 0;
+    }
+    function intToIp(int){
+      return [(int>>>24)&255,(int>>>16)&255,(int>>>8)&255,int&255].join('.');
+    }
+    function maskFromCidr(cidr){
+      return cidr===0?0: (~0 << (32-cidr)) >>> 0;
+    }
+    document.getElementById('calc-subnet').addEventListener('click',()=>{
+      const val = document.getElementById('subnet-input').value.trim();
+      if(!val.includes('/')){ document.getElementById('subnet-out').textContent='Format salah. Contoh: 192.168.1.10/24'; return; }
+      const [ipStr, cidrStr] = val.split('/');
+      const cidr = parseInt(cidrStr,10);
+      if(isNaN(cidr) || cidr<0 || cidr>32){ document.getElementById('subnet-out').textContent='CIDR invalid'; return; }
+      const ipInt = ipToInt(ipStr);
+      const mask = maskFromCidr(cidr);
+      const network = ipInt & mask;
+      const broadcast = network | (~mask >>> 0);
+      const firstHost = network + (cidr===32?0:1);
+      const lastHost = broadcast - (cidr===32||cidr===31?0:1);
+      const hosts = cidr>=31 ? (cidr===31?2:1) : (Math.pow(2,32-cidr)-2);
+      const out = [];
+      out.push(`Input: ${ipStr}/${cidr}`);
+      out.push(`Network: ${intToIp(network)}`);
+      out.push(`Netmask: ${intToIp(mask)}`);
+      out.push(`Broadcast: ${intToIp(broadcast)}`);
+      out.push(`First host: ${intToIp(firstHost)}`);
+      out.push(`Last host: ${intToIp(lastHost)}`);
+      out.push(`Available hosts: ${hosts}`);
+      document.getElementById('subnet-out').textContent = out.join('\n');
+    });
+    document.getElementById('copy-subnet').addEventListener('click',async()=>{
+      await navigator.clipboard.writeText(document.getElementById('subnet-out').textContent || '');
+      alert('Copied');
+    });
+
+    // ---------- Ping Simulator ----------
+    let pingTimer = null;
+    document.getElementById('run-ping').addEventListener('click',()=>{
+      const host = document.getElementById('ping-host').value || 'localhost';
+      const count = parseInt(document.getElementById('ping-count').value) || 4;
+      const outEl = document.getElementById('ping-out');
+      outEl.textContent = `Pinging ${host} with 32 bytes of data:` + '\n';
+      let done = 0; let times = [];
+      if(pingTimer) clearInterval(pingTimer);
+      pingTimer = setInterval(()=>{
+        if(done>=count){
+          clearInterval(pingTimer); pingTimer=null;
+          const valid = times.filter(t=>t!=null);
+          const sent = count; const recv = valid.length; const lost = sent - recv;
+          const min = valid.length?Math.min(...valid).toFixed(2):'-';
+          const max = valid.length?Math.max(...valid).toFixed(2):'-';
+          const avg = valid.length?(valid.reduce((a,b)=>a+b,0)/valid.length).toFixed(2):'-';
+          outEl.textContent += `\nPing statistics for ${host}:\n    Packets: Sent = ${sent}, Received = ${recv}, Lost = ${lost}\nApproximate round trip times in milli-seconds:\n    Minimum = ${min}ms, Maximum = ${max}ms, Average = ${avg}ms`;
+          return;
+        }
+        // simulate latency & possible loss
+        const lossChance = Math.random();
+        if(lossChance < 0.09){ // 9% packet loss
+          outEl.textContent += `Request timed out.\n`;
+          times.push(null);
+        } else {
+          const latency = (Math.random()*80 + 5) + (host.includes('local')?0:Math.random()*40);
+          times.push(latency);
+          outEl.textContent += `Reply from ${host}: bytes=32 time=${latency.toFixed(2)}ms TTL=${Math.floor(Math.random()*60)+60}\n`;
+        }
+        done++;
+      }, 600);
+    });
+    document.getElementById('stop-ping').addEventListener('click',()=>{
+      if(pingTimer) clearInterval(pingTimer); pingTimer=null; document.getElementById('ping-out').textContent += '\nStopped.';
+    });
+
+    // ---------- Text Tools ----------
+    document.querySelectorAll('#text-card .actions button').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const action = btn.dataset.action;
+        const txtIn = document.getElementById('text-input').value || '';
+        let out = '';
+        switch(action){
+          case 'upper': out = txtIn.toUpperCase(); break;
+          case 'lower': out = txtIn.toLowerCase(); break;
+          case 'trim': out = txtIn.trim(); break;
+          case 'rm-spaces': out = txtIn.replace(/\s+/g,' ').replace(/^ | $/g,''); break;
+          case 'reverse': out = txtIn.split('').reverse().join(''); break;
+          case 'copy': navigator.clipboard.writeText(document.getElementById('text-out').textContent||''); alert('Copied'); return;
+        }
+        document.getElementById('text-out').textContent = out || '—';
+      });
+    });
+
+    // small UX: press Enter on subnet/ping to run
+    document.getElementById('subnet-input').addEventListener('keydown',(e)=>{ if(e.key==='Enter') document.getElementById('calc-subnet').click(); });
+    document.getElementById('ping-host').addEventListener('keydown',(e)=>{ if(e.key==='Enter') document.getElementById('run-ping').click(); });
+
+  </script>
+  <!-- NAV JS FROM USER FILE -->
+  <script>
+    function hamburg(){document.querySelector('.dropdown').style.transform='translateY(0px)'}
+    function cancel(){document.querySelector('.dropdown').style.transform='translateY(-500px)'}
+  </script>
+  <script>
+    function hamburg(){
+      document.querySelector('.dropdown').style.transform='translateY(0)';
+    }
+    function cancel(){
+      document.querySelector('.dropdown').style.transform='translateY(-500px)';
+    }
+  </script>
+</body>
+</html>
