@@ -205,7 +205,6 @@ nav {
         .swiper {
             width: 100%;
             margin-left: 0;
-            pedding-left: 0;
         }
         .gallery-wrap,
         .container,
@@ -293,9 +292,9 @@ nav {
             </div>
             <div class="gallery-wrap">
                 <!-- Slider utama -->
-                <div class="swiper mySwiper">
+                <div class="swiper mySwiperHobi">
                   <div class="swiper-wrapper">
-                    <!-- 6 Foto potrait -->
+                    <!-- 6 Foto potrait (gunakan gambar sendiri atau ganti URL) -->
                     <div class="swiper-slide"><img src="img/day.jpeg" alt="girl.jpeg"></div>
                     <div class="swiper-slide"><img src="img/day2.jpeg" alt="girl2.jpeg"></div>
                     <div class="swiper-slide"><img src="img/day3.jpeg" alt="girl3.jpeg"></div>
@@ -319,9 +318,9 @@ nav {
             </div>
             <div class="gallery-wrap">
                 <!-- Slider utama -->
-                <div class="swiper mySwiper">
+                <div class="swiper mySwiperGirl">
                   <div class="swiper-wrapper">
-                    <!-- 6 Foto potrait -->
+                    <!-- 6 Foto potrait (gunakan gambar sendiri atau ganti URL) -->
                     <div class="swiper-slide"><img src="img/girl.jpeg" alt="girl.jpeg"></div>
                     <div class="swiper-slide"><img src="img/girl2.jpeg" alt="girl2.jpeg"></div>
                     <div class="swiper-slide"><img src="img/girl3.jpeg" alt="girl3.jpeg"></div>
@@ -358,7 +357,7 @@ nav {
             navbar.style.transform = "translateY(-500px)"
         }
 
-        const swiper = new Swiper('.mySwiper', {
+        const swiperHobi = new Swiper('.mySwiperHobi', {
       effect: 'coverflow',
       grabCursor: true,
       centeredSlides: true,
@@ -372,19 +371,28 @@ nav {
         modifier: 1,
         slideShadows: true,
       },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      autoplay: { delay: 3000, disableOnInteraction: false }
+    });
+
+const swiperGirl = new Swiper('.mySwiperGirl', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      loop: true,
+      slidesPerView: 'auto',
+      spaceBetween: 30,
+      coverflowEffect: {
+        rotate: 40,
+        stretch: 0,
+        depth: 180,
+        modifier: 1,
+        slideShadows: true,
       },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      // Optional: autoplay
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      }
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      autoplay: { delay: 3000, disableOnInteraction: false, reverseDirection: true }
     });
     </script>
 </body>
