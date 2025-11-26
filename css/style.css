@@ -1,4 +1,3 @@
-/* Fixed responsive style.css — dark blue glow theme */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
 
@@ -154,15 +153,16 @@ section {
 }
 
 .main-container .image {
-  width: clamp(160px, 45vw, 240px);   /* lebih kecil biar tdk ketarik */
-  aspect-ratio: 1/1;                  /* pastikan tetap bulet, tdk lonjong */
-  height: auto;                        /* FIX: tidak pakai height fix */
-  border-radius: 50%;
+  width: 85vw;              /* FIX SUPER: selalu muat HP */
+  max-width: 320px;         /* batasi supaya tidak kebesaran */
+  aspect-ratio: 3/4;        /* OVAL seperti contoh foto kamu */
+  height: auto;
+  border-radius: 50% / 60%; /* bentuk oval rapi tanpa lonjong aneh */
   overflow: hidden;
+  box-shadow: 0 0 40px rgba(50,132,255,0.9);
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 40px rgb(50, 132, 255);
 }
 
 .main-container .image img {
