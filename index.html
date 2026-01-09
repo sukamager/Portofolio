@@ -36,100 +36,91 @@
 
 body {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url("img/background.jpg");
-  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
 }
 
-nav {
-  width: 100%;
-  height: 10vh;
-  position: sticky;
-}
 
-.nav-container {
-  width: 100%;
-  height: 100%;
+.pill-nav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  gap: 4px;
+  padding: 6px;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  z-index: 1000;
 }
 
-.logo {
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-.logo span {
-  color: rgb(50, 132, 255);
-  text-shadow: 0 0 10px rgb(50, 132, 255);
-}
-
-.hamburg,
-.cancel {
-  cursor: pointer;
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  color: white;
+.pill-nav::-webkit-scrollbar {
   display: none;
-  font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
 }
 
-.nav-container .links {
-  display: flex;
-}
-
-.nav-container .links a {
-  font-size: 1.2rem;
-  color: white;
-  margin: 0 20px;
+.pill-nav a {
+  padding: 10px 18px;
+  border-radius: 999px;
   text-decoration: none;
-  font-weight: 550;
-  transition: 0.3s linear;
+  color: #bbb;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
 }
 
-.nav-container .links a:hover {
-  color: rgb(50, 132, 255);
-  border-bottom: 2px solid rgb(50, 132, 255);
+.pill-nav a:hover {
+  color: #fff;
 }
 
-.nav-container .links .active {
-  color: rgb(50, 132, 255);
-  border-bottom: 2px solid rgb(50, 132, 255);
+.pill-nav a.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
 }
 
-.dropdown {
-  z-index: 100;
-  position: absolute;
-  top: 0;
-  transform: translateY(-500px);
-  width: 100%;
-  height: auto;
-  backdrop-filter: blur(4px) brightness(40%);
-  box-shadow: 0 0 20px black;
-  transition: 0.2s linear;
+/* ===== Mobile Adjustment ===== */
+@media (max-width: 480px) {
+  .pill-nav {
+    top: 10px;
+    padding: 4px;
+    gap: 2px;
+    border-radius: 999px;
+  }
+
+  .pill-nav a {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 }
 
-.dropdown .links a {
-  display: flex;
-  color: white;
-  text-decoration: none;
-  padding: 15px 0;
-  justify-content: center;
-  align-items: center;
-  transition: 0.2s linear;
-}
-
-.dropdown .links a:hover {
-  background-color: rgb(50, 132, 255);
-}
 
 section {
   width: 100%;
-  height: 90vh;
+  min-height: 100vh;
+  padding-top: 110px;
 }
+
+@media (max-width: 480px) {
+  section {
+    padding-top: 130px;
+  }
+}
+
 
 .main-container {
   width: 100%;
@@ -168,6 +159,23 @@ section {
 .content p {
   font-size: clamp(0, 4rem, 0.2rem + 9vw, 1rem);
   margin: 10px 0;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  margin-top: 15px;
+}
+
+@media (max-width: 480px) {
+  .social-links i {
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 1.2rem;
+    margin: 0;
+  }
 }
 
 .social-links i {
@@ -217,9 +225,9 @@ section {
 }
 
 .main-container .image {
-  width: 50vh;
-  height: 50vh;
-  border-radius: 100%;
+  width: 280px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 0 50px rgb(50, 132, 255);
 }
@@ -227,7 +235,9 @@ section {
 .main-container .image img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
+
 
 .main-container .image:hover {
   animation: animate 1.5s ease-in-out infinite;
@@ -284,11 +294,11 @@ section {
   }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 480px) {
   .main-container .image {
-    width: 60%;
-    height: 30%;
+    width: 200px;
   }
+
 
   .main-container .content {
     width: 80%;
@@ -298,65 +308,43 @@ section {
     margin-top: 15px;
   }
 }
+
+@media (max-width: 480px) {
+
+  /* ==== Social Media Icons ==== */
+  .social-links {
+    gap: 8px;
+    justify-content: flex-start;
+  }
+
+  .social-links i {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+    border-width: 1.5px;
+  }
+
+  /* ==== Button Seputar Saya ==== */
+  .content button {
+    min-width: unset;
+    width: auto;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    margin-top: 14px;
+    height: auto;
+  }
+}
+
 </style>
 <body>
 
-    <!-- 
-      Navigation Section
-      - Menggunakan sistem grid untuk layout
-      - Includes logo dan menu navigasi
-      - Responsive dengan hamburger menu untuk mobile 
-    -->
-    <nav>
-        <div class="nav-container">
-
-            <!-- 
-              Logo dengan animasi zoom-in
-              data-aos-duration: 1500ms untuk animasi yang smooth 
-            -->
-            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
-                Suka <span>Mager</span>
-            </div>
-
-            <!-- 
-              Navigation Links
-              - Menggunakan fade-up animation dengan delays bertingkat
-              - Active class untuk halaman yang sedang aktif 
-            -->
-            <div class="links">
-                <div class="link active" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a
-                        href="index.html">Utama</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a
-                        href="about.html">Tentang</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a
-                        href="contact.html">Kontak</a></div>
-            </div>
-        </div>
-
-        <!-- 
-          Hamburger Menu Icon
-          - Muncul pada tampilan mobile
-          - Menggunakan Font Awesome icon
-          - onClick handler untuk membuka menu 
-        -->
-        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
-
-        <!-- 
-          Dropdown Menu untuk Mobile
-          - Berisi link navigasi yang sama
-          - Muncul ketika hamburger menu diklik
-          - Includes tombol close (x) 
-        -->
-        <div class="dropdown">
-            <div class="links">
-                <a href="index.html">Utama</a>
-                <a href="about.html">Tentang</a>
-                <a href="contact.html">Kontak</a>
-                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
-            </div>
-        </div>
-    </nav>
-
+<nav class="pill-nav">
+  <a class="active" href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="show.html">Show</a>
+  <a href="project.html">Projects</a>
+  <a href="contact.html">Contact</a>
+</nav>
     <!-- 
       Main Content Section
       - Menggunakan grid untuk layout dua kolom
