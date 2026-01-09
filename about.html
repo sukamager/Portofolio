@@ -208,6 +208,32 @@
                 line-height: 1.4;
             }
         }
+
+        /* ===== Spotify Section ===== */
+.spotify-section {
+  margin-top: 3rem;
+}
+
+.spotify-section h2 {
+  text-align: center;
+  color: rgb(50, 132, 255);
+  margin-bottom: 1.5rem;
+}
+
+.spotify-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.spotify-list iframe {
+  width: 100%;
+  height: 152px;
+  border-radius: 14px;
+  border: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
     </style>
     <title>Tentang Saya</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
@@ -242,7 +268,19 @@
                 </div>
             </div>
 
-        <!-- Link ke library animasi AOS -->
+<div class="spotify-section" data-aos="fade-up" data-aos-duration="1500">
+  <h2>🎧 Music I Listen To</h2>
+
+  <div class="spotify-list">
+    <iframe src="https://open.spotify.com/embed/track/1imyB3ufkQTtOnD2PYUSuu" loading="lazy"></iframe>
+    <iframe src="https://open.spotify.com/embed/track/2vzpoecVhBE1pKtHzKONaN" loading="lazy"></iframe>
+    <iframe src="https://open.spotify.com/embed/track/5xtZ0Zz2J2ugaO6w6yC48w" loading="lazy"></iframe>
+    <iframe src="https://open.spotify.com/embed/track/5MIpcd16T59wFeqAChSYwC" loading="lazy"></iframe>
+    <iframe src="https://open.spotify.com/embed/track/4HPxh6IkRxCkb3T06Pltch" loading="lazy"></iframe>
+    <iframe src="https://open.spotify.com/embed/track/3z2Kcl9Oz1IxSgVoKN6RXo" loading="lazy"></iframe>
+  </div>
+</div>
+
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
         <!-- JavaScript untuk interaksi dan animasi halaman -->
