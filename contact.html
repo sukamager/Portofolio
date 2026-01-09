@@ -25,94 +25,69 @@
             position: relative;
         }
 
-        nav {
-            width: 100%;
-            height: 10vh;
-            position: relative;
-            z-index: 1000;
-        }
+          /* ===== Pill Navbar ===== */
+.pill-nav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 6px;
 
-        .nav-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-        .logo {
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
-        }
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
 
-        .logo span {
-            color: rgb(50, 132, 255);
-            text-shadow: 0 0 10px rgb(50, 132, 255);
-        }
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  z-index: 1000;
+}
 
-        .hamburg,
-        .cancel {
-            cursor: pointer;
-            position: absolute;
-            right: 15px;
-            top: 10px;
-            color: white;
-            display: none;
-            font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
-        }
+.pill-nav::-webkit-scrollbar {
+  display: none;
+}
 
-        .nav-container .links {
-            display: flex;
-        }
+.pill-nav a {
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #bbb;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
 
-        .nav-container .links a {
-            font-size: 1.2rem;
-            color: white;
-            margin: 0 20px;
-            text-decoration: none;
-            font-weight: 550;
-            transition: 0.3s linear;
-        }
+.pill-nav a:hover {
+  color: #fff;
+}
 
-        .nav-container .links a:hover {
-            color: rgb(50, 132, 255);
-            border-bottom: 2px solid rgb(50, 132, 255);
-        }
+.pill-nav a.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
 
-        .nav-container .links .active {
-            color: rgb(50, 132, 255);
-            border-bottom: 2px solid rgb(50, 132, 255);
-        }
+/* ===== Mobile Adjustment ===== */
+@media (max-width: 480px) {
+  .pill-nav {
+    top: 10px;
+    padding: 4px;
+    gap: 2px;
+    border-radius: 999px;
+  }
 
-        .dropdown {
-            z-index: 1000;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            transform: translateY(-500px);
-            width: 100%;
-            height: auto;
-            backdrop-filter: blur(4px) brightness(40%);
-            box-shadow: 0 0 20px black;
-            transition: 0.2s linear;
-        }
-
-        .dropdown .links a {
-            display: flex;
-            color: white;
-            text-decoration: none;
-            padding: 15px 0;
-            justify-content: center;
-            align-items: center;
-            transition: 0.2s linear;
-        }
-
-        .dropdown .links a:hover {
-            background-color: rgb(50, 132, 255);
-        }
-
+  .pill-nav a {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
         /* Contact Section Styles */
         .contact-container {
             width: 100%;
@@ -342,31 +317,13 @@
 </head>
 
 <body>
-    <nav>
-        <div class="nav-container">
-            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
-                Suka <span>Mager</span>
-            </div>
-            <div class="links">
-                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a
-                        href="index.html">Utama</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a
-                        href="about.html">Tentang</a></div>
-                <div class="link active" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a
-                        href="contact.html">Kontak</a></div>
-            </div>
-        </div>
-        <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
-        <div class="dropdown">
-            <div class="links">
-                <a href="index.html">Utama</a>
-                <a href="about.html">Tentang</a>
-                <a href="contact.html">Kontak</a>
-                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
-            </div>
-        </div>
-    </nav>
-
+<nav class="pill-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="show.html">Show</a>
+  <a href="project.html">Projects</a>
+  <a class="active" href="contact.html">Contact</a>
+</nav>
     <div class="contact-container">
         <div class="contact-content">
             <div class="contact-info">
@@ -459,7 +416,7 @@
         AOS.init({ offset: 0, });
     </script>
     <script src="./js/script.js"></script>
-    <script>
+<script>
 function hamburg(){
     const navbar = document.querySelector(".dropdown")
     navbar.style.transform  = "translateY(0px)"
