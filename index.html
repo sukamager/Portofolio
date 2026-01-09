@@ -40,17 +40,18 @@
         }
 
         .code-logo {
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             margin: 0 auto;
             position: relative;
             animation: float 3s ease-in-out infinite;
         }
 
-        .code-logo svg {
+        .code-logo img {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.6));
         }
 
         .tagline {
@@ -187,18 +188,11 @@
         <div class="content">
             <div class="logo-container">
                 <div class="code-logo">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" 
-                                 fill="none" stroke="#3b82f6" stroke-width="2"/>
-                        <text x="20" y="60" font-size="40" fill="#60a5fa" font-family="monospace" font-weight="bold">&lt;/&gt;</text>
-                        <circle cx="50" cy="20" r="2" fill="#93c5fd"/>
-                        <circle cx="30" cy="80" r="2" fill="#93c5fd"/>
-                        <circle cx="70" cy="80" r="2" fill="#93c5fd"/>
-                    </svg>
+                    <img src="img/logo-wayang.png" alt="Logo Wayang">
                 </div>
             </div>
             <div class="tagline">SUKAMAGER</div>
-            <div class="subtitle">Selamat datang & tunggu Sebentar</div>
+            <div class="subtitle">Selamat datang & Tunggu sebentar</div>
             <div class="loader">
                 <div class="loader-bar"></div>
             </div>
