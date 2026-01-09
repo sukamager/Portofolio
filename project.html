@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Projects</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+<style>
+body{
+  background:url("./img/background.jpg") center/cover no-repeat;
+  min-height:100vh;
+  color:#fff;
+  font-family:Poppins,sans-serif;
+}
+
+  /* ===== Pill Navbar ===== */
+.pill-nav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  z-index: 1000;
+}
+
+.pill-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.pill-nav a {
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #bbb;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.pill-nav a:hover {
+  color: #fff;
+}
+
+.pill-nav a.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* ===== Mobile Adjustment ===== */
+@media (max-width: 480px) {
+  .pill-nav {
+    top: 10px;
+    padding: 4px;
+    gap: 2px;
+    border-radius: 999px;
+  }
+
+  .pill-nav a {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+.projects-container{
+  max-width:1200px;
+  margin:auto;
+  padding:4rem 2rem;
+}
+.projects-title{
+  text-align:center;
+  font-size:2.5rem;
+  color:rgb(50,132,255);
+  margin-bottom:3rem;
+}
+.content-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2rem;
+}
+.content-card{
+  background:rgba(50,132,255,.1);
+  border:1px solid rgba(50,132,255,.4);
+  border-radius:15px;
+  overflow:hidden;
+  transition:.3s;
+}
+.content-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 25px rgba(50,132,255,.4);
+}
+.card-image img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+.card-info{
+  padding:1.5rem;
+}
+.card-info h3{
+  color:rgb(50,132,255);
+}
+.visit-btn{
+  display:inline-block;
+  margin-top:1rem;
+  padding:10px 16px;
+  background:rgb(50,132,255);
+  color:#fff;
+  text-decoration:none;
+  border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+<nav class="pill-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="show.html">Show</a>
+  <a class="active" href="project.html">Projects</a>
+  <a href="contact.html">Contact</a>
+</nav>
+<div class="projects-container">
+  <h1 class="projects-title" data-aos="fade-down">My Projects</h1>
+
+  <div class="content-grid">
+  <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/project0.jpeg">
+      </div>
+      <div class="card-info">
+        <h3>Project – Website Biodata Pribadi</h3>
+        <p>Membuat website biodata pribadi sebagai media pengenalan diri, kemudahan kontak, dan penyajian informasi CV secara ringkas.</p>
+        <a href="https://sukamager.github.io/Bio-saya/" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+        <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/project1.jpg">
+      </div>
+      <div class="card-info">
+        <h3>Project – Website PT. Proxinet Jember</h3>
+        <p>Website ini dibuat sebagai media informasi dan komunikasi PT. Proxinet Jember. Tujuannya untuk memudahkan penyampaian profil perusahaan dan akses kontak. Project ini mendukung kebutuhan komunikasi digital perusahaan.</p>
+        <a href="https://proxinetjember.github.io/proxinet.jember/" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+        <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/project2.jpeg">
+      </div>
+      <div class="card-info">
+        <h3>Project – Website Portofolio Pribadi</h3>
+        <p>Website portofolio ini dibuat sebagai media pengenalan diri dan kemudahan presentasi. Tampilan dirancang sederhana dan rapi agar informasi mudah disampaikan. Project ini menjadi sarana dokumentasi dan pengembangan diri.</p>
+        <a href="https://dwiagustiav.github.io/Portofolio/" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+        <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/project3.jpeg">
+      </div>
+      <div class="card-info">
+        <h3>Project – Konfigurasi Jaringan Mitra Baru PT. Proxinet</h3>
+        <p>Project ini berisi pengalaman membantu proses konfigurasi jaringan pada mitra baru PT. Proxinet. Fokus kegiatan adalah memastikan jaringan dapat digunakan dengan normal. Project ini menjadi bagian dari pembelajaran praktik jaringan.</p>
+        <a href="https://proxinetjember.github.io/proxinet.jember/hubungi.html" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+    <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/project4.jpeg">
+      </div>
+      <div class="card-info">
+        <h3>Project – Pemasangan ODP dan Client Baru FTTH</h3>
+        <p>Project ini berisi pengalaman pemasangan ODP dan penyambungan client baru pada jaringan FTTH. Fokus kegiatan adalah memastikan koneksi berjalan normal. Project ini menjadi bagian dari pembelajaran praktik jaringan lapangan.</p>
+        <a href="https://proxinetjember.github.io/proxinet.jember/hubungi.html" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+    <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/project5.jpeg">
+      </div>
+      <div class="card-info">
+        <h3>Project – Website Bio Link Pribadi</h3>
+        <p>Website bio link ini dibuat untuk mengumpulkan berbagai tautan media sosial dan informasi dalam satu halaman. Tujuannya untuk memudahkan akses dan berbagi profil secara praktis.</p>
+        <a href="https://sukamager.github.io/Bio-saya/" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+
+    <!-- copy card lain di sini -->
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>AOS.init()</script>
+</body>
+</html>

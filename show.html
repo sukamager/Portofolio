@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Show Me</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+<style>
+body{
+  background:url("./img/background.jpg") center/cover no-repeat;
+  min-height:100vh;
+  color:#fff;
+  font-family:Poppins,sans-serif;
+}
+
+  /* ===== Pill Navbar ===== */
+.pill-nav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  z-index: 1000;
+}
+
+.pill-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.pill-nav a {
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #bbb;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.pill-nav a:hover {
+  color: #fff;
+}
+
+.pill-nav a.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+/* ===== Mobile Adjustment ===== */
+@media (max-width: 480px) {
+  .pill-nav {
+    top: 10px;
+    padding: 4px;
+    gap: 2px;
+    border-radius: 999px;
+  }
+
+  .pill-nav a {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+.projects-container{
+  max-width:1200px;
+  margin:auto;
+  padding:4rem 2rem;
+}
+.projects-title{
+  text-align:center;
+  font-size:2.5rem;
+  color:rgb(50,132,255);
+  margin-bottom:3rem;
+}
+.content-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:2rem;
+}
+.content-card{
+  background:rgba(50,132,255,.1);
+  border:1px solid rgba(50,132,255,.4);
+  border-radius:15px;
+  overflow:hidden;
+  transition:.3s;
+}
+.content-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 10px 25px rgba(50,132,255,.4);
+}
+.card-image img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+.card-info{
+  padding:1.5rem;
+}
+.card-info h3{
+  color:rgb(50,132,255);
+}
+.visit-btn{
+  display:inline-block;
+  margin-top:1rem;
+  padding:10px 16px;
+  background:rgb(50,132,255);
+  color:#fff;
+  text-decoration:none;
+  border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+<nav class="pill-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a class="active" href="show.html">Show</a>
+  <a href="project.html">Projects</a>
+  <a href="contact.html">Contact</a>
+</nav>
+<div class="projects-container">
+  <h1 class="projects-title" data-aos="fade-down">Show Me</h1>
+
+  <div class="content-grid">
+
+    <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/show.jpg">
+      </div>
+      <div class="card-info">
+        <h3>🏆 Peringkat 3 Juara Paralel</h3>
+        <p>Meraih peringkat 3 juara paralel di SMK Nuris Jember sebagai hasil dari konsistensi belajar dan kedisiplinan selama proses pembelajaran.</p>
+        <a href="https://pesantrennuris.net/2025/06/kunci-raih-peringkat-3-paralel-di-smk-nuris-basyar-sukai-dulu-mata-pelajarannya/" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+        <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/show2.jpg">
+      </div>
+      <div class="card-info">
+        <h3>🏅 5 Besar Lomba LKS ITNSA</h3>
+        <p>Masuk 5 besar dalam kejuaraan LKS bidang IT Network System Administration (ITNSA) sebagai pengalaman kompetisi dan pengembangan kemampuan.</p>
+        <a href="https://www.instagram.com/p/DGQTe8yy6Ta/" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+        <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/show3.jpg">
+      </div>
+      <div class="card-info">
+        <h3>🛠️ Teknisi Jaringan PKL – PT. Proxinet</h3>
+        <p>Mengikuti kegiatan PKL sebagai teknisi jaringan di PT. Proxinet dan terlibat dalam berbagai aktivitas lapangan serta pendukung layanan jaringan.</p>
+        <a href="https://proxinetjember.github.io/proxinet.jember/#activity" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+    <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/show4.jpg">
+      </div>
+      <div class="card-info">
+        <h3>🤖 Lomba Robotika Line Follower – Universitas Jember</h3>
+        <p>Mengikuti lomba robotika line follower yang diselenggarakan di Universitas Jember sebagai pengalaman pengembangan minat dan kemampuan di bidang teknologi.</p>
+        <a href="https://ft.unej.ac.id/jlt-vii-futuristic-war/" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+    <div class="content-card" data-aos="fade-up">
+      <div class="card-image">
+        <img src="img/show5.jpeg">
+      </div>
+      <div class="card-info">
+        <h3>📋 Pengurus OSIS – Sekretaris</h3>
+        <p>Menjadi anggota OSIS dan menjabat sebagai sekretaris dalam mendukung kegiatan organisasi dan administrasi sekolah.</p>
+        <a href="https://smknurisjember.sch.id/article/16/ldk-dan-makesta-2025-pengurus-osis-smk-nuris-teguhkan-komitmen-pelajar-nu-yang-berintegritas" target="_blank" class="visit-btn">
+          Kunjungi
+        </a>
+      </div>
+    </div>
+    <!-- copy card lain di sini -->
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>AOS.init()</script>
+</body>
+</html>
