@@ -4,22 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Link ke Font Awesome untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Link ke library animasi AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Portofolio | Sukamager</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 
-    <!-- CSS internal untuk styling halaman -->
     <style>
-        /* 
-        Import Google Font Poppins
-        Font weight yang diimport: 100, 200, 300, 400, 500, 600 
-        */
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap");
 
-        /* Reset CSS dan pengaturan default */
+        :root {
+            --blue: rgb(50, 132, 255);
+            --blue-glow: rgba(50, 132, 255, 0.55);
+            --blue-soft: rgba(50, 132, 255, 0.15);
+            --card-bg: rgba(0, 0, 0, 0.65);
+        }
+
         * {
             padding: 0;
             margin: 0;
@@ -27,92 +26,77 @@
             box-sizing: border-box;
         }
 
-        /* 
-        Styling untuk body
-        - Menggunakan background image
-        - Cover seluruh viewport
-        - Mencegah horizontal scroll
-        */
         body {
             width: 100%;
             min-height: 100vh;
             background-image: url("./img/background.jpg");
             background-size: cover;
+            background-attachment: fixed;
             overflow-x: hidden;
             position: relative;
         }
 
-  /* ===== Pill Navbar ===== */
-.pill-nav {
-  position: fixed;
-  top: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 4px;
-  padding: 6px;
+        /* ===== PILL NAV ===== */
+        .pill-nav {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 4px;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+            max-width: calc(100vw - 24px);
+            overflow-x: auto;
+            scrollbar-width: none;
+            z-index: 1000;
+            transition: box-shadow 0.3s ease;
+        }
 
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+        .pill-nav:hover {
+            box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 20px rgba(50,132,255,0.12);
+        }
 
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.12);
+        .pill-nav::-webkit-scrollbar { display: none; }
 
-  max-width: calc(100vw - 24px);
-  overflow-x: auto;
-  scrollbar-width: none;
-  z-index: 1000;
-}
+        .pill-nav a {
+            padding: 10px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #bbb;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+        }
 
-.pill-nav::-webkit-scrollbar {
-  display: none;
-}
+        .pill-nav a:hover {
+            color: #fff;
+            transform: translateY(-1px);
+        }
 
-.pill-nav a {
-  padding: 10px 18px;
-  border-radius: 999px;
-  text-decoration: none;
-  color: #bbb;
-  font-size: 14px;
-  white-space: nowrap;
-  transition: all 0.25s ease;
-}
+        .pill-nav a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
 
-.pill-nav a:hover {
-  color: #fff;
-}
+        @media (max-width: 480px) {
+            .pill-nav { top: 10px; padding: 4px; gap: 2px; }
+            .pill-nav a { padding: 6px 10px; font-size: 12px; }
+        }
 
-.pill-nav a.active {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
-}
-
-/* ===== Mobile Adjustment ===== */
-@media (max-width: 480px) {
-  .pill-nav {
-    top: 10px;
-    padding: 4px;
-    gap: 2px;
-    border-radius: 999px;
-  }
-
-  .pill-nav a {
-    padding: 6px 10px;
-    font-size: 12px;
-  }
-}
-        /* About Section Styles */
+        /* ===== ABOUT CONTAINER ===== */
         .about-container {
             width: 100%;
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 7rem 2rem 3rem;
             position: relative;
             z-index: 1;
         }
@@ -120,177 +104,318 @@
         .about-content {
             width: 80%;
             max-width: 1200px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            background: transparent;
+            border-radius: 24px;
             padding: 3rem;
             color: white;
-            /* box-shadow: 0 0 30px rgba(50, 132, 255, 0.3); */
         }
 
+        /* ===== HEADER ===== */
         .about-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
         }
 
         .about-header h1 {
             font-size: 2.5rem;
-            color: rgb(50, 132, 255);
-            text-shadow: 0 0 10px rgb(50, 132, 255);
-            margin-bottom: 1rem;
+            color: var(--blue);
+            text-shadow: 0 0 20px var(--blue-glow);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
         }
 
+        .about-header .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--blue), transparent);
+            margin: 0 auto;
+            border-radius: 999px;
+            animation: pulse-line 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-line {
+            0%, 100% { width: 60px; opacity: 0.7; }
+            50%       { width: 120px; opacity: 1; }
+        }
+
+        /* ===== GRID ===== */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 2.5rem;
+            align-items: center;
         }
 
+        /* ===== ABOUT IMAGE ===== */
         .about-image {
             width: 100%;
             aspect-ratio: 1;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 0 20px rgb(50, 132, 255);
+            position: relative;
+            box-shadow:
+                0 0 0 3px rgba(50,132,255,0.25),
+                0 0 30px rgba(50,132,255,0.4),
+                0 10px 40px rgba(0,0,0,0.5);
+            transition:
+                transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.5s ease;
+            cursor: pointer;
+        }
+
+        /* Glow border sweep on hover */
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, var(--blue), transparent, var(--blue)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Shimmer overlay */
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%, rgba(50,132,255,0.08) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+            pointer-events: none;
         }
 
         .about-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: block;
         }
 
-        .about-text h2 {
-            color: rgb(50, 132, 255);
-            margin-bottom: 1rem;
+        .about-image:hover {
+            transform: scale(1.03) translateY(-6px) rotate(0.5deg);
+            box-shadow:
+                0 0 0 4px rgba(50,132,255,0.5),
+                0 0 50px rgba(50,132,255,0.6),
+                0 0 80px rgba(50,132,255,0.25),
+                0 20px 50px rgba(0,0,0,0.5);
         }
+
+        .about-image:hover::before { opacity: 1; }
+        .about-image:hover::after  { opacity: 1; }
+
+        .about-image:hover img {
+            transform: scale(1.06);
+        }
+
+        /* ===== ABOUT TEXT ===== */
+        .about-text h2 {
+            color: var(--blue);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            text-shadow: 0 0 8px var(--blue-glow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blue);
+            border-radius: 999px;
+            transition: width 0.4s ease;
+            box-shadow: 0 0 8px var(--blue-glow);
+        }
+
+        .about-text:hover h2::after { width: 100%; }
 
         .about-text p {
-            line-height: 1.6;
+            line-height: 1.75;
             margin-bottom: 1rem;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
         }
 
-        .award-icon {
-            font-size: 2rem;
-            color: rgb(50, 132, 255);
-            margin-bottom: 1rem;
+        /* ===== INFO BADGES ===== */
+        .info-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1.2rem;
         }
 
-    @media (max-width: 884px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    @media (max-width: 440px) {
-            .about-container {
-                padding: 1rem;
-            }
-
-            .about-content {
-                width: 95%;
-                /* Memperbesar width untuk layar kecil */
-                padding: 1.5rem;
-            }
-
-            .about-header h1 {
-                font-size: 1.8rem;
-                /* Mengurangi ukuran judul */
-            }
-
-            .about-text h2 {
-                font-size: 1.4rem;
-                /* Mengurangi ukuran sub-judul */
-            }
-
-            .about-text p {
-                font-size: 0.9rem;
-                /* Mengurangi ukuran teks */
-                line-height: 1.4;
-            }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: var(--blue-soft);
+            border: 1px solid rgba(50,132,255,0.3);
+            color: var(--blue);
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition:
+                transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+            cursor: default;
         }
 
-        /* ===== Spotify Section ===== */
-.spotify-section {
-  margin-top: 3rem;
-}
+        .badge i { font-size: 0.85rem; }
 
-.spotify-section h2 {
-  text-align: center;
-  color: rgb(50, 132, 255);
-  margin-bottom: 1.5rem;
-}
+        .badge:hover {
+            transform: translateY(-3px) scale(1.06);
+            background: rgba(50,132,255,0.28);
+            box-shadow: 0 4px 16px var(--blue-glow), 0 0 0 1px rgba(50,132,255,0.5);
+        }
 
-.spotify-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.2rem;
-}
+        /* ===== SPOTIFY SECTION ===== */
+        .spotify-section {
+            margin-top: 3rem;
+        }
 
-.spotify-list iframe {
-  width: 100%;
-  height: 152px;
-  border-radius: 14px;
-  border: none;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-}
+        .spotify-section h2 {
+            text-align: center;
+            color: var(--blue);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px var(--blue-glow);
+        }
 
+        .spotify-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .spotify-card {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            transition:
+                transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .spotify-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow:
+                0 12px 35px rgba(0,0,0,0.5),
+                0 0 20px rgba(50,132,255,0.25);
+        }
+
+        .spotify-card iframe {
+            width: 100%;
+            height: 152px;
+            border: none;
+            display: block;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 884px) {
+            .about-grid { grid-template-columns: 1fr; }
+            .about-image { max-width: 360px; margin: 0 auto; }
+        }
+
+        @media (max-width: 480px) {
+            .about-container { padding: 6rem 1rem 2rem; }
+            .about-content { width: 95%; padding: 1.5rem; }
+            .about-header h1 { font-size: 1.8rem; }
+            .about-text h2 { font-size: 1.2rem; }
+            .about-text p { font-size: 0.88rem; }
+        }
     </style>
-    <title>Portofolio | Sukamager</title>
-    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 </head>
 
 <body>
-    <!-- Navigasi -->
-<nav class="pill-nav">
-  <a href="home.html">Home</a>
-  <a class="active" href="about.html">About</a>
-  <a href="show.html">Show</a>
-  <a href="project.html">Projects</a>
-  <a href="contact.html">Contact</a>
-</nav>
-    <!-- Konten utama halaman About -->
+
+    <nav class="pill-nav">
+        <a href="home.html">Home</a>
+        <a class="active" href="about.html">About</a>
+        <a href="show.html">Show</a>
+        <a href="project.html">Projects</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
     <div class="about-container">
         <div class="about-content" id="aboutContent">
-            <!-- Bagian header -->
-            <div class="about-header" data-aos="fade-down" data-aos-duration="1500">
+
+            <!-- Header -->
+            <div class="about-header" data-aos="fade-down" data-aos-duration="1200">
                 <h1>About Me</h1>
+                <div class="divider"></div>
             </div>
 
-            <!-- Grid untuk gambar dan teks deskripsi -->
+            <!-- Grid -->
             <div class="about-grid">
-                <div class="about-image" data-aos="fade-right" data-aos-duration="1500">
-                    <img src="img/logo2.jpg" alt="About Image">
+
+                <!-- Image -->
+                <div class="about-image" data-aos="fade-right" data-aos-duration="1400">
+                    <img src="img/logo2.jpeg" alt="About Image">
                 </div>
-                <div class="about-text" data-aos="fade-left" data-aos-duration="1500">
+
+                <!-- Text -->
+                <div class="about-text" data-aos="fade-left" data-aos-duration="1400" data-aos-delay="100">
                     <h2>Who Am I?</h2>
                     <p>Halo, saya Khoirul Basyar. Saya memiliki fokus pada bidang seni visual dan teknologi jaringan. Saya terbiasa mengembangkan karya desain grafis, baik secara manual maupun digital, untuk menghasilkan materi visual yang komunikatif, informatif, dan fungsional.</p>
                     <p>Selain itu, saya memiliki ketertarikan pada sistem jaringan komputer, khususnya dalam perancangan dan pengelolaan jaringan lokal. Saya terbiasa menggunakan perangkat jaringan serta software simulasi seperti Cisco Packet Tracer, dan terus mengembangkan kemampuan teknis serta kreatif melalui pembelajaran mandiri dan pengerjaan proyek.</p>
+
+                    <!-- Skill badges -->
+                    <div class="info-badges">
+                        <span class="badge" data-aos="zoom-in" data-aos-delay="200"><i class="fa-solid fa-network-wired"></i> Network</span>
+                        <span class="badge" data-aos="zoom-in" data-aos-delay="280"><i class="fa-solid fa-pen-nib"></i> Graphic Design</span>
+                        <span class="badge" data-aos="zoom-in" data-aos-delay="360"><i class="fa-solid fa-code"></i> Programmer</span>
+                        <span class="badge" data-aos="zoom-in" data-aos-delay="440"><i class="fa-solid fa-layer-group"></i> Cisco Packet Tracer</span>
+                    </div>
                 </div>
             </div>
 
-<div class="spotify-section" data-aos="fade-up" data-aos-duration="1500">
-  <h2>🎧 Music I Listen To</h2>
+            <!-- Spotify -->
+            <div class="spotify-section" data-aos="fade-up" data-aos-duration="1400" data-aos-delay="100">
+                <h2>🎧 Music I Listen To</h2>
+                <div class="spotify-list">
+                    <div class="spotify-card" data-aos="fade-up" data-aos-delay="0">
+                        <iframe src="https://open.spotify.com/embed/track/1imyB3ufkQTtOnD2PYUSuu" loading="lazy"></iframe>
+                    </div>
+                    <div class="spotify-card" data-aos="fade-up" data-aos-delay="80">
+                        <iframe src="https://open.spotify.com/embed/track/2vzpoecVhBE1pKtHzKONaN" loading="lazy"></iframe>
+                    </div>
+                    <div class="spotify-card" data-aos="fade-up" data-aos-delay="160">
+                        <iframe src="https://open.spotify.com/embed/track/5xtZ0Zz2J2ugaO6w6yC48w" loading="lazy"></iframe>
+                    </div>
+                    <div class="spotify-card" data-aos="fade-up" data-aos-delay="240">
+                        <iframe src="https://open.spotify.com/embed/track/5MIpcd16T59wFeqAChSYwC" loading="lazy"></iframe>
+                    </div>
+                    <div class="spotify-card" data-aos="fade-up" data-aos-delay="320">
+                        <iframe src="https://open.spotify.com/embed/track/4HPxh6IkRxCkb3T06Pltch" loading="lazy"></iframe>
+                    </div>
+                    <div class="spotify-card" data-aos="fade-up" data-aos-delay="400">
+                        <iframe src="https://open.spotify.com/embed/track/3z2Kcl9Oz1IxSgVoKN6RXo" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
 
-  <div class="spotify-list">
-    <iframe src="https://open.spotify.com/embed/track/1imyB3ufkQTtOnD2PYUSuu" loading="lazy"></iframe>
-    <iframe src="https://open.spotify.com/embed/track/2vzpoecVhBE1pKtHzKONaN" loading="lazy"></iframe>
-    <iframe src="https://open.spotify.com/embed/track/5xtZ0Zz2J2ugaO6w6yC48w" loading="lazy"></iframe>
-    <iframe src="https://open.spotify.com/embed/track/5MIpcd16T59wFeqAChSYwC" loading="lazy"></iframe>
-    <iframe src="https://open.spotify.com/embed/track/4HPxh6IkRxCkb3T06Pltch" loading="lazy"></iframe>
-    <iframe src="https://open.spotify.com/embed/track/3z2Kcl9Oz1IxSgVoKN6RXo" loading="lazy"></iframe>
-  </div>
-</div>
+        </div>
+    </div>
 
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ offset: 0, easing: 'ease-out-cubic', once: true });
+    </script>
 
-        <!-- JavaScript untuk interaksi dan animasi halaman -->
-        <script>
-
-            // Inisialisasi library AOS
-            AOS.init({ offset: 0 });
-
-
-        </script>
 </body>
-
 </html>
