@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portofolio | Sukamager</title>
+<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --blue: rgb(50, 132, 255);
+  --blue-glow: rgba(50, 132, 255, 0.5);
+  --blue-soft: rgba(50, 132, 255, 0.12);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: url("./img/background.jpg") center/cover no-repeat fixed;
+  min-height: 100vh;
+  color: #fff;
+}
+
+/* ===== PILL NAV ===== */
+.pill-nav {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  z-index: 1000;
+  transition: box-shadow 0.3s ease;
+}
+
+.pill-nav:hover {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 20px rgba(50,132,255,0.12);
+}
+
+.pill-nav::-webkit-scrollbar { display: none; }
+
+.pill-nav a {
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #bbb;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+}
+
+.pill-nav a:hover { color: #fff; transform: translateY(-1px); }
+.pill-nav a.active { background: rgba(255,255,255,0.15); color: #fff; }
+
+@media (max-width: 480px) {
+  .pill-nav { top: 10px; padding: 4px; gap: 2px; }
+  .pill-nav a { padding: 6px 10px; font-size: 12px; }
+}
+
+/* ===== CONTAINER ===== */
+.projects-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 6rem 2rem 4rem;
+}
+
+.projects-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--blue);
+  text-shadow: 0 0 20px var(--blue-glow);
+  margin-bottom: 0.6rem;
+  letter-spacing: 1px;
+}
+
+.title-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  margin: 0 auto 3rem;
+  border-radius: 999px;
+  animation: pulse-line 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-line {
+  0%, 100% { width: 60px; opacity: 0.7; }
+  50%       { width: 120px; opacity: 1; }
+}
+
+/* ===== GRID ===== */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* ===== CARD ===== */
+.content-card {
+  background: rgba(10, 20, 40, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(50,132,255,0.25);
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  transition:
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.45s ease,
+    border-color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Top glow edge */
+.content-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+  border-radius: 999px;
+}
+
+/* Shimmer sweep */
+.content-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.content-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 0 0 1px rgba(50,132,255,0.5),
+    0 16px 40px rgba(0,0,0,0.5),
+    0 0 40px rgba(50,132,255,0.2);
+  border-color: rgba(50,132,255,0.6);
+}
+
+.content-card:hover::before { opacity: 1; }
+.content-card:hover::after  { opacity: 1; }
+
+/* ===== CARD IMAGE ===== */
+.card-image {
+  overflow: hidden;
+  position: relative;
+}
+
+.card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(5,15,35,0.7) 100%);
+  pointer-events: none;
+}
+
+.card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.content-card:hover .card-image img {
+  transform: scale(1.08);
+}
+
+/* ===== CARD INFO ===== */
+.card-info {
+  padding: 1.4rem 1.5rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.card-info h3 {
+  color: var(--blue);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 0 8px rgba(50,132,255,0.4);
+  transition: text-shadow 0.3s ease;
+}
+
+.content-card:hover .card-info h3 {
+  text-shadow: 0 0 16px rgba(50,132,255,0.7);
+}
+
+.card-info p {
+  font-size: 0.83rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 0.2rem;
+}
+
+/* ===== VISIT BUTTON ===== */
+.visit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 1rem;
+  padding: 9px 18px;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--blue);
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.visit-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.visit-btn:hover::before { transform: translateX(100%); }
+
+.visit-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: transparent;
+  color: var(--blue);
+  box-shadow: 0 0 20px var(--blue-glow), 0 4px 14px rgba(0,0,0,0.3);
+}
+
+.visit-btn:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
+}
+
+@media (max-width: 480px) {
+  .projects-container { padding: 5rem 1rem 3rem; }
+  .projects-title { font-size: 1.8rem; }
+}
+</style>
+</head>
+
+<body>
+<nav class="pill-nav">
+  <a href="home.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="show.html">Show</a>
+  <a href="project.html">Projects</a>
+  <a class="active" href="sertif.html">Sertifikat</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<div class="projects-container">
+  <h1 class="projects-title" data-aos="fade-down" data-aos-duration="1200">My Sertifikat</h1>
+  <div class="title-divider" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="100"></div>
+
+  <div class="content-grid">
+
+    <div class="content-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="80">
+      <div class="card-image"><img src="img/sertif1.png" alt="Project 1"></div>
+      <div class="card-info">
+        <h3>Sertifikat – Peserta Lomba Pramuka Se-Jember Utara</h3>
+        <p>Mengikuti lomba Pramuka tingkat SD sederajat se-Jember Utara yang diselenggarakan oleh SMA Negeri Kalisat tahun 2018.</p>
+        <a href="img/sertif1.png" target="_blank" class="visit-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi</a>
+      </div>
+    </div>
+
+    <div class="content-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="160">
+      <div class="card-image"><img src="img/sertif2.png" alt="Project 2"></div>
+      <div class="card-info">
+        <h3>Sertifikat – Peserta Lomba Teknik Pramuka</h3>
+        <p>Berpartisipasi dalam lomba Teknik Pramuka pada kegiatan MILAD MTsN 1 Jember tahun 2019.</p>
+        <a href="img/sertif2.png" target="_blank" class="visit-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi</a>
+      </div>
+    </div>
+
+    <div class="content-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="240">
+      <div class="card-image"><img src="img/sertif3.png" alt="Project 3"></div>
+      <div class="card-info">
+        <h3>Sertifikat – Penghargaan Peringkat 3</h3>
+        <p>Meraih peringkat 3 sebagai siswa berprestasi di SMP Negeri 1 Puger tahun ajaran 2021/2022.</p>
+        <a href="img/sertif3.png" target="_blank" class="visit-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi</a>
+      </div>
+    </div>
+
+    <div class="content-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="560">
+      <div class="card-image"><img src="img/sertif7.png" alt="Project 7"></div>
+      <div class="card-info">
+        <h3>Sertifikat – Adobe Lightroom Mobile</h3>
+        <p>Mengikuti pelatihan Adobe Lightroom Mobile untuk mengembangkan keterampilan dalam pengeditan foto digital 2023.</p>
+        <a href="img/sertif7.png" target="_blank" class="visit-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi</a>
+      </div>
+    </div>
+
+    <div class="content-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="480">
+      <div class="card-image"><img src="img/sertif6.png" alt="Project 6"></div>
+      <div class="card-info">
+        <h3>Sertifikat – Penghargaan Bidang Matematika</h3>
+        <p>Meraih predikat siswa terbaik pertama dalam bidang Matematika pada Program Intensif Kelas Sains 2023/2024.</p>
+        <a href="img/sertif6.png" target="_blank" class="visit-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi</a>
+      </div>
+    </div>
+
+    <div class="content-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="320">
+      <div class="card-image"><img src="img/sertif4.png" alt="Project 4"></div>
+      <div class="card-info">
+        <h3>Sertifikat – Juara II Olimpiade TKJ</h3>
+        <p>Meraih juara II Olimpiade Teknik Komputer dan Jaringan dalam Festival Lomba Bakat Minat SMK Nuris Jember tahun 2024.</p>
+        <a href="img/sertif4.png" target="_blank" class="visit-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi</a>
+      </div>
+    </div>
+
+    <div class="content-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="400">
+      <div class="card-image"><img src="img/sertif5.png" alt="Project 5"></div>
+      <div class="card-info">
+        <h3>Sertifikat – Penghargaan Peringkat 1</h3>
+        <p>Meraih peringkat 1 Pararel kelas XI TI A di SMK Nuris Jember pada semester ganjil tahun pelajaran 2024/2025.</p>
+        <a href="img/sertif5.png" target="_blank" class="visit-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi</a>
+      </div>
+    </div>
+
+    <div class="content-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="640">
+      <div class="card-image"><img src="img/sertif8.png" alt="Project 8"></div>
+      <div class="card-info">
+        <h3>Sertifikat – PKKMB Politeknik Negeri Jember</h3>
+        <p>Mengikuti kegiatan Pengenalan Kehidupan Kampus bagi Mahasiswa Baru (PKKMB) di Politeknik Negeri Jember.</p>
+        <a href="img/sertif8.png" target="_blank" class="visit-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi</a>
+      </div>
+    </div>
+
+    <div class="content-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="560">
+      <div class="card-image"><img src="img/sertif9.png" alt="Project 9"></div>
+      <div class="card-info">
+        <h3>Sertifikat – EXPO EPIM TI Politeknik Negeri Jember</h3>
+        <p>Berpartisipasi dalam kegiatan EXPO EPIM yang diselenggarakan di lingkungan Teknologi Informasi Politeknik Negeri Jember.</p>
+        <a href="img/sertif9.png" target="_blank" class="visit-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi</a>
+      </div>
+    </div>
+
+    <div class="content-card" data-aos="fade-up" data-aos-duration="700" data-aos-delay="560">
+      <div class="card-image"><img src="img/sertif10.jpeg" alt="Project 10"></div>
+      <div class="card-info">
+        <h3>Sertifikat – OSPEK Jurusan Teknologi Informasi</h3>
+        <p>Mengikuti kegiatan orientasi Jurusan Teknologi Informasi untuk mengenal lingkungan akademik dan kehidupan perkuliahan.</p>
+        <a href="img/sertif10.jpeg" target="_blank" class="visit-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Kunjungi</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({ offset: 60, easing: 'ease-out-cubic', once: true });
+</script>
+</body>
+</html>
