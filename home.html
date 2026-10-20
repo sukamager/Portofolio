@@ -36,7 +36,6 @@ body {
   color: #fff;
 }
 
-/* ===== PILL NAV ===== */
 .pill-nav {
   position: fixed;
   top: 24px;
@@ -90,7 +89,6 @@ body {
   .pill-nav a { padding: 6px 10px; font-size: 12px; }
 }
 
-/* ===== SECTION ===== */
 section {
   width: 100%;
   min-height: 100vh;
@@ -101,7 +99,6 @@ section {
   section { padding-top: 130px; }
 }
 
-/* ===== MAIN CONTAINER ===== */
 .main-container {
   width: 100%;
   height: 100%;
@@ -143,7 +140,6 @@ section {
   color: rgba(255,255,255,0.85);
 }
 
-/* ===== SOCIAL LINKS ===== */
 .social-links {
   display: flex;
   align-items: center;
@@ -168,7 +164,6 @@ section {
   border-radius: 50%;
   color: var(--blue);
   font-size: 1.5rem;
-  /* Smooth multi-property transition */
   transition:
     transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
     background-color 0.3s ease,
@@ -205,13 +200,11 @@ section {
   opacity: 1;
 }
 
-/* Individual icon color accents on hover */
 .social-links a:nth-child(1):hover i { background-color: #e1306c; border-color: #e1306c; box-shadow: 0 0 0 6px rgba(225,48,108,0.2), 0 0 20px rgba(225,48,108,0.6), 0 8px 20px rgba(0,0,0,0.4); }
 .social-links a:nth-child(2):hover i { background-color: #fff; border-color: #fff; color: #000; box-shadow: 0 0 0 6px rgba(255,255,255,0.15), 0 0 20px rgba(255,255,255,0.4), 0 8px 20px rgba(0,0,0,0.4); }
 .social-links a:nth-child(3):hover i { background-color: #000; border-color: #fff; color: #fff; box-shadow: 0 0 0 6px rgba(255,255,255,0.1), 0 0 20px rgba(255,255,255,0.3), 0 8px 20px rgba(0,0,0,0.4); }
 .social-links a:nth-child(4):hover i { background-color: #fff; border-color: #fff; color: #000; box-shadow: 0 0 0 6px rgba(255,255,255,0.15), 0 0 20px rgba(255,255,255,0.4), 0 8px 20px rgba(0,0,0,0.4); }
 
-/* ===== BUTTON ===== */
 .content button {
   width: 50%;
   height: 6vh;
@@ -258,14 +251,12 @@ section {
   transition: transform 0.1s ease;
 }
 
-/* ===== PROFILE IMAGE ===== */
 .main-container .image {
   width: 280px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
-  /* Smooth glow ring */
   box-shadow:
     0 0 0 4px rgba(50,132,255,0.3),
     0 0 40px rgba(50,132,255,0.5),
@@ -276,7 +267,6 @@ section {
   cursor: pointer;
 }
 
-/* Orbit ring on hover */
 .main-container .image::before {
   content: '';
   position: absolute;
@@ -292,7 +282,6 @@ section {
   z-index: 2;
 }
 
-/* Shimmer overlay */
 .main-container .image::after {
   content: '';
   position: absolute;
@@ -339,7 +328,6 @@ section {
   100% { transform: rotate(360deg); }
 }
 
-/* Idle floating animation */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50%       { transform: translateY(-10px); }
@@ -353,7 +341,6 @@ section {
   animation: none;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 884px) {
   .main-container {
     display: flex;
@@ -467,7 +454,6 @@ function cancel(){
     navbar.style.transform = "translateY(-500px)"
 }
 
-// Typewriter animation
 const texts = [
     "NETWORK ENGINEER",
     "PROGRAMMER",
