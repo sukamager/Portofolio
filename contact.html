@@ -33,7 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== PILL NAV ===== */
         .pill-nav {
             position: fixed;
             top: 24px;
@@ -79,7 +78,6 @@
             .pill-nav a { padding: 6px 10px; font-size: 12px; }
         }
 
-        /* ===== CONTACT CONTAINER ===== */
         .contact-container {
             width: 100%;
             min-height: 100vh;
@@ -98,7 +96,6 @@
             color: white;
         }
 
-        /* ===== LEFT — INFO ===== */
         .contact-info {
             display: flex;
             flex-direction: column;
@@ -133,7 +130,6 @@
             line-height: 1.6;
         }
 
-        /* ===== CONTACT ITEMS ===== */
         .contact-details {
             display: flex;
             flex-direction: column;
@@ -216,7 +212,6 @@
             font-weight: 500;
         }
 
-        /* ===== SOCIAL LINKS ===== */
         .social-links {
             display: flex;
             gap: 12px;
@@ -248,16 +243,11 @@
             box-shadow: 0 0 0 5px var(--blue-soft), 0 0 18px var(--blue-glow);
         }
 
-        /* Instagram */
         .social-links a:nth-child(1):hover { background: #e1306c; color: #fff; border-color: #e1306c; box-shadow: 0 0 18px rgba(225,48,108,0.5); }
-        /* GitHub */
         .social-links a:nth-child(2):hover { background: #fff; color: #000; border-color: #fff; box-shadow: 0 0 18px rgba(255,255,255,0.35); }
-        /* TikTok */
         .social-links a:nth-child(3):hover { background: #000; color: #fff; border-color: #fff; box-shadow: 0 0 18px rgba(255,255,255,0.2); }
-        /* X */
         .social-links a:nth-child(4):hover { background: #fff; color: #000; border-color: #fff; box-shadow: 0 0 18px rgba(255,255,255,0.35); }
 
-        /* ===== RIGHT — FORM ===== */
         .contact-form {
             background: rgba(10, 20, 40, 0.55);
             backdrop-filter: blur(14px);
@@ -270,7 +260,6 @@
             transition: box-shadow 0.4s ease, border-color 0.3s ease;
         }
 
-        /* Top glow edge */
         .contact-form::before {
             content: '';
             position: absolute;
@@ -299,7 +288,6 @@
             gap: 1.4rem;
         }
 
-        /* ===== FORM GROUP ===== */
         .form-group {
             position: relative;
         }
@@ -362,7 +350,6 @@
             transform: none;
         }
 
-        /* ===== SUBMIT BUTTON ===== */
         .submit-btn {
             padding: 13px 2rem;
             background: var(--blue);
@@ -405,7 +392,6 @@
             transition: transform 0.1s ease;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 884px) {
             .contact-container { padding: 6rem 1.5rem 3rem; }
             .contact-content {
@@ -451,7 +437,6 @@
     <div class="contact-container">
         <div class="contact-content">
 
-            <!-- LEFT: Info -->
             <div class="contact-info">
                 <div class="contact-header" data-aos="fade-right" data-aos-duration="1200">
                     <h1>Mengenal Lebih Dalam</h1>
@@ -493,7 +478,6 @@
                 </div>
             </div>
 
-            <!-- RIGHT: Form -->
             <div class="contact-form" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="100">
                 <p class="form-title">Kirim Pesan ✉️</p>
 
