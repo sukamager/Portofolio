@@ -200,7 +200,6 @@
     </div>
 
     <script>
-        // Buat partikel
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 25; i++) {
             const particle = document.createElement('div');
@@ -214,7 +213,6 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Buat efek code rain
         const codeRainContainer = document.getElementById('codeRain');
         const codeSymbols = ['<', '>', '{', '}', '(', ')', '[', ']', '/', '\\', '0', '1'];
         for (let i = 0; i < 20; i++) {
@@ -227,12 +225,9 @@
             codeRainContainer.appendChild(code);
         }
 
-        // REDIRECT KE WEBSITE PORTOFOLIO SETELAH 3 DETIK
         setTimeout(() => {
-            // GANTI 'portfolio.html' dengan nama file website portofolio kamu
-            // Atau bisa pakai URL lengkap seperti 'https://websitekamu.com'
             window.location.href = 'home.html';
-        }, 3000); // 3000 = 3 detik
+        }, 3000);
     </script>
 </body>
 </html>
